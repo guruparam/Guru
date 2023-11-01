@@ -1,0 +1,96 @@
+{% load static %}
+<html>
+    <head>
+<title>
+    Main page
+</title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
+
+<style>
+
+    #bg {
+        background-image: url("{% static 'images/display.jpg' %}") ;
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+    }
+    .tit {
+        text-align: center;
+        margin:20px;
+        padding: 20px;
+        align-content: center;
+        background-color: rgb(51, 48, 48);
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+        max-height: max-content;
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+	    align-items: center;
+    }
+    img {
+        margin-top: 50px;
+        margin-left: 30px;
+        height: 900px;
+        max-width: fit-content;
+    }
+    .c2c {
+        align-content: center;
+        margin-top: 50px;
+        height: 700px;
+        width: 380px;
+    }
+    
+    li {
+        text-align: center;        
+        list-style-type: none;
+        padding : 25px;
+        margin-bottom: 60px;
+        border-radius: 5px;
+        margin-top: 60px;
+        background-color: aquamarine;
+        display: block;
+        justify-content: space-between;
+    }
+    li a {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        font-style: oblique;
+        color: black;
+        text-decoration: none;
+    }
+</style>
+</head>
+
+<body id="bg">
+<h1 class="tit"> 
+    Welcome to the Mobile world
+</h1>
+<div class="container">
+    <div>
+        <img src="{% static 'images/iphone.gif' %}" alt="showroom picture" >
+    </div>
+    <div class="c2c">
+        <ul>
+            <li>
+                <a href="{% url 'Create_brand' %}">Upload Your Brand <br><u>Here</u> </a>
+            </li>
+            <li>
+                <a href="{% url 'Create_model' %}">Upload Your Model <br><u>Here</u></a>
+            </li>
+            <li>
+                <a href="{% url 'List_brand' %}">List Brand <br>collection</a>
+            </li>
+            <li>
+                <a href="{% url 'List_model' %}">List Model <br>collection</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8" />
+    
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <title> Brand Collection Page</title>
+    <style>
+        h1 {
+            margin-top: 60px;
+            color:rgb(248, 245, 245);
+            text-align:center;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-style: oblique; 
+          
+        }
+        body {
+           background-image: url("{% static 'images/index.jpg' %}") ;
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           
+        }
+        h2 {
+            margin: 0px 38px 40px;        
+        }
+        p {
+            margin: 0px 38px 0px;
+        }
+        
+        .container {
+            display: flex;
+            outline-offset: 3px;
+	        justify-content: center;
+            padding: 3px;
+            flex-wrap: wrap;
+            margin: 0px 58px 0px;
+            margin-bottom: 44px;
+            border-bottom: 1px;
+            padding-bottom: 16px;
+            max-height: max-content;
+            width: 1150px;
+            align-items:center;
+            
+        }
+
+        .box {
+            background-color: rgb(219, 228, 226);
+            align-items: center;
+            cursor: pointer;
+            display: flex;
+            flex-wrap: wrap;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: large;
+            font-weight: bold;
+            overflow: hidden;
+            box-shadow: 5px 10px 8px black;
+            border-radius: 6px;
+            border-bottom: solid;
+            margin: 15px 22px 15px;
+            height: 70px;
+            width: 300px;
+            padding: 15px;     
+            
+        }   
+        
+        img {
+            margin-right: 15px;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            border-radius: 10px;
+            text-size-adjust:initial;
+            height: 70px;
+            width: 70px;
+            text-overflow: ellipsis;
+            padding: 5px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        li a {
+            align-items: center;
+            display: block;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        li {
+            float: right;
+        }
+        
+        
+
+    </style>
+</head>
+
+
+<body>
+    <ul>
+            <li style="float: left; font-size: large; margin-left: 30px;">
+                <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+            <li><a>Contact</a></li>
+            <li><a>About</a></li>
+            <li><a href="{% url 'Main_page' %}">Home</a></li>
+    </ul>
+    {% block content %}
+    <h1>BRAND COLLECTION</h1>
+    <h2 style="color:aliceblue;"> Select the Brand Mention Below <br>
+    <l style="font-size: medium;">
+        <u>Collection based on your favorite</u>
+    <l></h2>
+    {% endblock content %}
+   
+        <div class="container">       
+            {% for item in brand %}
+            <div class="box">
+            <a href="{% url 'List_model1' item.name %} ">
+            <img src="{{item.image.url}}" alt="Brand"> </a> 
+            <div>{{ item.name }}</div>        
+            </div>
+            {% endfor %}  
+        </div>
+    
+    
+</body>
+</html>

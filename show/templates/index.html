@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<title>
+    Upload Brand Collection
+</title>
+<head>
+    
+    <style>
+        .bn {
+            display: flex;
+            flex-flow:column;
+            border: 1px solid;
+            box-shadow: 5px 10px 8px black;
+            width: 25%;
+            max-height: max-content;
+            margin: auto;
+            margin-top: 70px;
+            padding: 40px;
+            text-align: start;
+        }
+        .tit2 {
+            text-align: center;
+            margin:20px;
+            
+            padding: 20px;
+            align-content: center;
+            background-color: rgb(51, 48, 48);
+            background-size: 500px 100px;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body class="container1" style="padding:20px;">
+<h2 class="tit2"> UPLOAD YOUR BRAND </h2>
+<form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="text-align:center; justify-content: center;" > Upload </button>
+</form>
+</body>
+</html>
