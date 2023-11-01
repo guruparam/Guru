@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Brand(models.Model):
@@ -23,3 +24,16 @@ class Phonemodel(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Transaction(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    model = models.ForeignKey(Phonemodel,on_delete=models.CASCADE)
+    trans_choice = (
+        ("card","card"),
+        ("cash","cash"),
+    )
+    transaction_type = models.CharField(max_length=4,choices=trans_choice,default='cash')
+    amount = models.IntegerField(null=False,blank=False)
+
+    def __str__(self):
+        return self.user
