@@ -1,13 +1,18 @@
+{% load static %}
+
 {% block content %}
+<title>
+    Welcome to Buying page
+</title>
 <h1>
-    Transaction Details
+   Checkout Your Order
 </h1>
 {% endblock content %}
 <style>
-    body {
-        background-color: #f2f2f2;
-    }
+    
     h1 {
+        background-color: bisque;
+        padding: 20px;
             margin-top: 60px;
             color:rgb(8, 8, 8);
             text-align:center;
@@ -27,13 +32,13 @@
             max-height: max-content;
             width: 1150px;
             align-items:center;
-            margin-top: 100px;
+            margin-top: 50px;
             
         }
 
         .card {
             background-color: rgb(255, 255, 255);
-            align-items: center;
+            
             cursor: pointer;
             display: flex;
             flex-wrap: wrap;
@@ -45,25 +50,38 @@
             border: solid;
             border:color(from color srgb r g b);
             margin: 5px 18px 24px;
-            height: 510px;
+            max-height: max-content;
             width: 490px;
             padding: 15px;  
             
         } 
+        img {
+            margin-right: 16px;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            border-radius: 10px;
+            text-size-adjust:initial;
+            max-height: min-content;
+            max-width: min-content;
+            text-overflow: ellipsis;
+            padding: 5px;
+            justify-content: center;
+        }
 </style>
 
     <div class="container">       
-        {{model}}
         <div class="card">
-        {}
-        <img src="{{model.image.url}}" alt="Models">  
+            <img src="{{model.image.url}}" alt="{{model.name}}">
+            
         </div>
-        <div class="card">{{ model.name }}. <br>
-             Rs. {{ model.price  }} <br>
-             
-                <br>
-                <b ></b>
-                <br> <button class="sell"><a href="{% url 'transaction' %}" style="color: white;"> Sell </a></button> 
+        <form method="POST" class="card" style="display: block;" enctype="multipart/form-data">
+            <p><u>{{model.name}} </u></p>
+            
+            <p style="color:rgb(250, 4, 4);">Rs. {{model.price}}</p>
+            <br>
+            <button type="submit" style="text-align:center; justify-content: center;" > Buy </button>
+        </form> 
+        
         </div>
                      
         </div>

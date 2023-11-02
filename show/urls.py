@@ -11,7 +11,7 @@ urlpatterns = [
     path('list_brand/', views.list_brand, name='List_brand' ),
     path('list_model/', views.list_model, name= 'List_model' ),
     path('list_model/<str:brand_id>/', views.list_model1, name= 'List_model1' ),
-    path('transaction/', views.transaction, name= 'transaction' ),
+    path('sell/<str:mname>', views.transaction, name= 'transaction' ),
 ]
 
 if settings.DEBUG:

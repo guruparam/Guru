@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from show.forms import *
-from show import models
+from show.forms import brandform, modelform,Transactionform
+from show.models import Brand,Transaction,Phonemodel
 from django.contrib import messages
 # Create your views here.
 
@@ -44,12 +44,18 @@ def list_model(request):
 
 def list_model1(request,brand_id):
     if (Brand.objects.filter(name=brand_id)):
-        model = Phonemodel.objects.filter(brand__name=brand_id)  
+        model = Phonemodel.objects.filter(brand__name=brand_id)
         context = {"model":model}
         return render(request,'list2.html',context)
     else:
         messages.warning(request,'No such Models Found')
         return redirect('List_brand')
 
-def transaction(request):
-    return render(request,'transaction.html')    
+def transaction(request, mname):
+    if (Phonemodel.objects.filter(name=mname)):
+        model = Phonemodel.objects.filter(name=mname).first()
+        context = {"model":model}
+        return render(request,'transaction.html',context)
+    else:
+        messages.warning(request,'No such Models Found')
+        return redirect('List_model')

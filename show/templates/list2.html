@@ -142,7 +142,7 @@
                  <button>+</button> <br>
                     <br>
                     <b style="font-size: small;">{{item.available_quantities}} Available</b>
-                    <br> <button class="sell"><a href="{% url 'transaction' %}" style="color: white;"> Sell </a></button> 
+                    <br> <button class="sell"><a href="{% url 'transaction' item.name %}" style="color: white;"> Sell </a></button> 
                 </div>
                          
             </div>
