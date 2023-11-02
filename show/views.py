@@ -54,7 +54,14 @@ def list_model1(request,brand_id):
 def transaction(request, mname):
     if (Phonemodel.objects.filter(name=mname)):
         model = Phonemodel.objects.filter(name=mname).first()
-        context = {"model":model}
+        form = Transactionform
+        context = {"model":model,
+                   "form": form}
+        if request.method == 'POST':
+            form = Transactionform(request.POST,request.FILES)
+            if form.is_valid():
+              form.save()
+              
         return render(request,'transaction.html',context)
     else:
         messages.warning(request,'No such Models Found')

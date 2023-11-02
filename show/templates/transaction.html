@@ -38,7 +38,7 @@
 
         .card {
             background-color: rgb(255, 255, 255);
-            
+            align-items: center;
             cursor: pointer;
             display: flex;
             flex-wrap: wrap;
@@ -47,8 +47,7 @@
             font-weight: bold;
             overflow: hidden;
             border-radius: 6px;
-            border: solid;
-            border:color(from color srgb r g b);
+            
             margin: 5px 18px 24px;
             max-height: max-content;
             width: 490px;
@@ -61,28 +60,33 @@
             overflow-x: hidden;
             border-radius: 10px;
             text-size-adjust:initial;
-            max-height: min-content;
-            max-width: min-content;
+            height:  450px;;
+            width:450px;
             text-overflow: ellipsis;
             padding: 5px;
             justify-content: center;
         }
+        a {
+            margin-bottom: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            
+        }
 </style>
-
-    <div class="container">       
-        <div class="card">
-            <img src="{{model.image.url}}" alt="{{model.name}}">
+    <div>
+       <div class="container">       
+            <div class="card">
+              <img src="{{model.image.url}}" alt="{{model.name}}">           
+            </div>
+            <form method="POST" class="card" style="display: block;" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p><u>{{model.name}} </u></p>
+                
+                <p style="color:rgb(250, 4, 4);">Rs. {{model.price}}</p><br>
+                {{form.as_p}}
             
-        </div>
-        <form method="POST" class="card" style="display: block;" enctype="multipart/form-data">
-            <p><u>{{model.name}} </u></p>
-            
-            <p style="color:rgb(250, 4, 4);">Rs. {{model.price}}</p>
-            <br>
-            <button type="submit" style="text-align:center; justify-content: center;" > Buy </button>
-        </form> 
-        
-        </div>
-                     
-        </div>
+                <button type="submit" style="text-align:center;font-size: large;" > Buy </button>
+            </form>       
+        </div>                     
+    </div>
         
