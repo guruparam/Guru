@@ -56,18 +56,22 @@ def transaction(request, mname):
     if (Phonemodel.objects.filter(name=mname)):
         models = Phonemodel.objects.filter(name=mname).first()
         phonemodel = Phonemodel.objects.get(name=mname)
-        form = Transactionform(phonemodel=phonemodel)
+        form = Transactionform
         context = {"model":models,
                    "form": form}
+        
         if request.method == 'POST':
-           form = Transactionform(request.POST)
-           if form.is_valid():
-            # Get the current user and the amount from the PhoneModel models
-               
-               form.save()
-               
-            # Redirect to a new URL after the transaction is added
-               return HttpResponse('You got the Order Successfully')
+            model = Phonemodel.objects.get(name=mname)
+            trans_type = request.POST['transaction_type']
+            form = Transaction (
+                user = request.user,
+                transaction_type = trans_type,
+                amount = model.price,
+                model = model
+            )           
+            form.save()
+            messages.success(request,'You got the Order Successfully')    
+            return redirect('List_brand')
 
         else:
            form = Transactionform()

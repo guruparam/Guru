@@ -13,7 +13,7 @@ class Brand(models.Model):
     
 class Phonemodel(models.Model):
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE)
-    name = models.CharField(max_length=200,null=False,blank=False)
+    name = models.CharField(max_length=200,null=False,blank=False) # type: ignore
     released_year= models.DateField()
     available_quantities = models.IntegerField(null=False,blank=False)
     price = models.FloatField(null=False,blank=False)
@@ -32,7 +32,7 @@ class Transaction(models.Model):
         ("card","card"),
         ("cash","cash"),
     )
-    transaction_type = models.CharField(max_length=4,choices=trans_choice,default='cash')
+    transaction_type = models.CharField(max_length=15,choices=trans_choice,default='cash')
     amount = models.IntegerField(null=False,blank=False)
 
     def __str__(self):
