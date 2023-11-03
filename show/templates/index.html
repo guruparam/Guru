@@ -35,7 +35,7 @@
 <h2 class="tit2"> UPLOAD YOUR BRAND </h2>
 <form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p>{{ form.as_p }}</p>
     <button type="submit" style="text-align:center; justify-content: center;" > Upload </button>
 </form>
 </body>

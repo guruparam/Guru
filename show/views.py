@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from show.forms import brandform, modelform,Transactionform
 from show.models import Brand,Transaction,Phonemodel
 from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 def displayview(request):
@@ -16,8 +17,8 @@ def create_brand(request,*args, **kwargs):
             return redirect('/create_brand')
     else:        
        brand = brandform()
-       context =  {'form': brand}   
-    return render(request,'index.html',context)
+           
+    return render(request,'index.html', {'form': brand})
 
 def create_model(request):
     if request.method == 'POST':
@@ -53,15 +54,24 @@ def list_model1(request,brand_id):
 
 def transaction(request, mname):
     if (Phonemodel.objects.filter(name=mname)):
-        model = Phonemodel.objects.filter(name=mname).first()
-        form = Transactionform
-        context = {"model":model,
+        models = Phonemodel.objects.filter(name=mname).first()
+        phonemodel = Phonemodel.objects.get(name=mname)
+        form = Transactionform(phonemodel=phonemodel)
+        context = {"model":models,
                    "form": form}
         if request.method == 'POST':
-            form = Transactionform(request.POST,request.FILES)
-            if form.is_valid():
-              form.save()
-              
+           form = Transactionform(request.POST)
+           if form.is_valid():
+            # Get the current user and the amount from the PhoneModel models
+               
+               form.save()
+               
+            # Redirect to a new URL after the transaction is added
+               return HttpResponse('You got the Order Successfully')
+
+        else:
+           form = Transactionform()
+           
         return render(request,'transaction.html',context)
     else:
         messages.warning(request,'No such Models Found')
