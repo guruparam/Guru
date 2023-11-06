@@ -88,4 +88,4 @@ def transaction(request, mname):
         except:
             messages.warning(request,'Page Not Found')       
     except:
-        messages.ERROR
+        messages.ERROR(request,'Warning! Please visit after some time...')
