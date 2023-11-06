@@ -50,13 +50,16 @@ def list_model(request):
     return render(request,'list2.html',context)
 
 def list_model1(request,brand_id):
-    if (Brand.objects.filter(name=brand_id)):
-        model = Phonemodel.objects.filter(brand__name=brand_id)
-        context = {"model":model}
-        return render(request,'list2.html',context)
-    else:
-        messages.warning(request,'No such Models Found')
-        return redirect('List_brand')
+    try:
+        if (Brand.objects.filter(name=brand_id)):
+            model = Phonemodel.objects.filter(brand__name=brand_id)
+            context = {"model":model}
+            return render(request,'list2.html',context)
+        else:
+            messages.warning(request,'No such Models Found')
+            return redirect('List_brand')
+    except:
+        messages.warning(request,'Model Page Does Not Load')
 
 def transaction(request, mname):
     try:
@@ -65,9 +68,11 @@ def transaction(request, mname):
             form = Transactionform
             context = {"model":models,
                        "form": form}
-        
+        try:
             if request.method == 'POST':
                 model = Phonemodel.objects.get(name=mname)
+                model.available_quantities -= 1
+                model.save()
                 trans_type = request.POST['transaction_type']
                 form = Transaction (
                     user = request.user,
@@ -75,14 +80,12 @@ def transaction(request, mname):
                     amount = model.price,
                     model = model
                 )           
-                form.save()   
-                return HttpResponse("You Got The Order Successfully")
+                form.save() 
+                return redirect("List_brand")
             else:
                 form = Transactionform()          
             return render(request,'transaction.html',context)
-        
-        else:
-            messages.warning(request,'No such Models Found')
-            return redirect('List_model')
+        except:
+            messages.warning(request,'Page Not Found')       
     except:
         messages.ERROR
