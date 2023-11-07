@@ -55,7 +55,7 @@ def list_model(request):
 def list_model1(request,brand_id):
     try:
         if (Brand.objects.filter(name=brand_id)):
-            model = Phonemodel.objects.filter(brand__name=brand_id)
+            model = Phonemodel.objects.filter(brand__name=brand_id).order_by('created_at')
             context = {"model":model}
             return render(request,'list2.html',context)
         else:
