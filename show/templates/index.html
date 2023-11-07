@@ -17,6 +17,7 @@
             margin-top: 70px;
             padding: 40px;
             text-align: start;
+            background-color: rgb(235, 227, 227);
         }
         .tit2 {
             text-align: center;
@@ -36,7 +37,12 @@
 <form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
     {% csrf_token %}
     <p>{{ form.as_p }}</p>
-    <button type="submit" style="text-align:center; justify-content: center;" > Upload </button>
+    <button type="submit" onclick="submit()" style="text-align:center; justify-content: center;" > Upload </button>
 </form>
+<script>
+    function submit() {
+        alert("Data Uploaded Succesfully");
+    }
+</script>
 </body>
 </html>

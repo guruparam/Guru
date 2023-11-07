@@ -44,8 +44,7 @@
         }
 
         .card {
-            background-color: rgb(255, 255, 255);
-            align-items: center;
+            background-color: rgb(238, 232, 232);           
             cursor: pointer;
             display: flex;
             flex-wrap: wrap;
@@ -140,9 +139,15 @@
                  <button>-</button>
                  <input placeholder="1" style="width: 40px;">
                  <button>+</button> <br>
-                    <br>
-                    <b style="font-size: small;">{{item.available_quantities}} Available</b>
-                    <br> <button class="sell"><a href="{% url 'transaction' item.name %}" style="color: white;"> Sell </a></button> 
+                    <br> 
+                    <br> 
+                    <b style="font-size: small;">{% if item.available_quantities == 0 %}
+                        <b style="color: red;"> Out of Stock!!!</b>
+                        {% else %}
+                        {{ item.available_quantities }} Available
+                        {% endif %}</b>
+                    <br> 
+                    <button class="sell"><a href="{% url 'transaction' item.name %}" style="color: white;"> Sell </a></button> 
                 </div>
                          
             </div>

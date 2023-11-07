@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 def displayview(request):
     return render(request,'display.html')
 
+def msg(request):
+    return render(request,'msg.html')
+
 def create_brand(request,*args, **kwargs):
     try:
         if request.method == 'POST':
@@ -29,7 +32,7 @@ def create_model(request):
             model = modelform(request.POST,request.FILES)
             if model.is_valid():
                model.save()
-               return redirect('/create_model')
+               return redirect('message')
         else:
             model = modelform()
         return render(request,'index.html',{'form': model})
@@ -71,6 +74,8 @@ def transaction(request, mname):
         try:
             if request.method == 'POST':
                 model = Phonemodel.objects.get(name=mname)
+                if model.available_quantities == 0:
+                    return HttpResponse("Sorry, please visit next time")
                 model.available_quantities -= 1
                 model.save()
                 trans_type = request.POST['transaction_type']
