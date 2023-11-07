@@ -19,7 +19,7 @@ class Phonemodel(models.Model):
     price = models.PositiveIntegerField(null=False,blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_available= models.BooleanField(default=False,help_text='available-default,outofstock-hidden')
+    is_available= models.BooleanField(default=False)
     image = models.ImageField(upload_to="image1/",null=True,blank=True)     
 
     def __str__(self):

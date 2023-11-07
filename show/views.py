@@ -35,7 +35,7 @@ def create_model(request):
                return redirect('message')
         else:
             model = modelform()
-        return render(request,'index.html',{'form': model})
+        return render(request,'index1.html',{'form': model})
     except:
         return HttpResponse("You Enter the Invalid Input")
 
