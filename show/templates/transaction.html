@@ -83,8 +83,13 @@
                 
                 <p style="color:rgb(250, 4, 4);">Rs. {{model.price}}</p><br>
                 {{form.as_p}}
-                <button type="submit" style="text-align:center;font-size: large;" > Buy </button>
+                <button type="submit" onclick="myFunction()" style="text-align:center;font-size: large;" > Buy </button>
             </form>       
-        </div>                     
+        </div> 
+        <script>
+            function myFunction() {
+              alert("Success!!! You Got The Order...");
+            }
+            </script>                    
     </div>
         
