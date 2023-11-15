@@ -13,14 +13,14 @@
             width: 25%;
             max-height: max-content;
             margin: auto;
-            margin-top: 70px;
+            margin-top: 50px;
             padding: 40px;
             text-align: start;
             background-color: rgb(235, 227, 227);
         }
         .tit2 {
             text-align: center;
-            margin:20px;           
+            margin:  20px 300px;           
             padding: 20px;
             align-content: center;
             background-color: rgb(51, 48, 48);
@@ -30,11 +30,35 @@
             font-weight: bold;
             display: block;
         }
-        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        li a {
+            align-items: center;
+            display: block;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        li {
+            float: right;
+        }
         </style>
 </head>
 
 <body class="container1" style="padding:20px;">
+    <ul>
+        <li style="float: left; font-size: large; margin-left: 30px;">
+            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+        <li><a>Contact</a></li>
+        <li><a>About</a></li>
+        <li><a href="{% url 'Main_page' %}">Home</a></li>
+</ul>
     <h2 class="tit2"> UPLOAD YOUR PHONE MODEL </h2>
 
 <form method="POST" class="bn" enctype="multipart/form-data">

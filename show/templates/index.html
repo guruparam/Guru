@@ -21,7 +21,7 @@
         }
         .tit2 {
             text-align: center;
-            margin:20px;
+            margin:  20px 300px;
             
             padding: 20px;
             align-content: center;
@@ -30,9 +30,34 @@
             color: white;
             font-family: Arial, Helvetica, sans-serif;
         }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        li a {
+            align-items: center;
+            display: block;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        li {
+            float: right;
+        }
     </style>
 </head>
 <body class="container1" style="padding:20px;">
+    <ul>
+        <li style="float: left; font-size: large; margin-left: 30px;">
+            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+        <li><a>Contact</a></li>
+        <li><a>About</a></li>
+        <li><a href="{% url 'Main_page' %}">Home</a></li>
+</ul>
 <h2 class="tit2"> UPLOAD YOUR BRAND </h2>
 <form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
     {% csrf_token %}

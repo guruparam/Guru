@@ -1,23 +1,20 @@
 {% load static %}
 
-{% block content %}
+
 <title>
     Welcome to Buying page
 </title>
-<h1>
-   Checkout Your Order
-</h1>
-{% endblock content %}
+
+
 <style>
-    
     h1 {
-        background-color: bisque;
-        padding: 20px;
-            margin-top: 60px;
-            color:rgb(8, 8, 8);
-            text-align:center;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
-            font-style: oblique; 
+        background-color: rgb(5, 5, 5);
+        padding: 10px;
+        margin-top: 40px;
+        color:rgba(209, 162, 33, 0.877);
+        text-align:center;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-style: oblique; 
     }
 
     .container {
@@ -67,11 +64,40 @@
         }
         a {
             margin-bottom: 100px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             
         }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        li a {
+            align-items: center;
+            display: block;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        li {
+            float: right;
+        }
 </style>
+<body>
+    <ul>
+        <li style="float: left; font-size: medium; margin-left: 30px;">
+            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+        <li><a>Contact</a></li>
+        <li><a>About</a></li>
+        <li><a href="{% url 'Main_page' %}">Home</a></li>
+    </ul>
+
+<h1>
+   Checkout Your Order
+</h1>
     <div>
        <div class="container">       
             <div class="card">
@@ -92,4 +118,4 @@
             }
             </script>                    
     </div>
-        
+</body>       
