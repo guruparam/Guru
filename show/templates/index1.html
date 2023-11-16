@@ -52,21 +52,26 @@
 </head>
 
 <body class="container1" style="padding:20px;">
-    <ul>
-        <li style="float: left; font-size: large; margin-left: 30px;">
-            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
-        <li><a>Contact</a></li>
-        <li><a>About</a></li>
-        <li><a href="{% url 'Main_page' %}">Home</a></li>
-</ul>
-    <h2 class="tit2"> UPLOAD YOUR PHONE MODEL </h2>
-
-<form method="POST" class="bn" enctype="multipart/form-data">
-    <div class="form-container">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" > Upload </button>
+    <div>
+        <ul>
+            <li style="float: left; font-size: large; margin-left: 30px;">
+                <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+            <li><a>Contact</a></li>
+            <li><a>About</a></li>
+            <li><a href="{% url 'Main_page' %}">Home</a></li>
+        </ul>
     </div>
-</form>
+    <div>
+        <h2 class="tit2"> UPLOAD YOUR PHONE MODEL </h2>
+
+        <form method="POST" class="bn" enctype="multipart/form-data">
+            <div class="form-container">
+                 {% csrf_token %}
+                 {{form.as_p}}
+                <button type="submit" > Upload </button>
+            </div>
+        </form>
+    </div>       
+
 </body>
 </html>

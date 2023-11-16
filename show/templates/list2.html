@@ -115,37 +115,45 @@
 
 
 <body>
-    <ul>
+    <div>
+        <ul>
             <li style="float: left; font-size: large; margin-left: 30px;">
-                <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+                <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a>
+            </li>
             <li><a>Contact</a></li>
             <li><a>About</a></li>
             <li><a href="{% url 'Main_page' %}">Home</a></li>
-    </ul>
-    {% block content %}
-    <h1>MODEL COLLECTION</h1>
-    <h2>Model Given Below <br>
-    <l style="font-size: medium;"><u>Choose your favourite model in the stock</u>
-    </h2>
-    {% endblock content %}
-   
+        </ul>
+    </div>
+    <div>  
+        {% block content %}
+            <h1>MODEL COLLECTION</h1>
+            <h2>Model Given Below 
+                <br>
+                <l style="font-size: medium;"><u>Choose your favourite model in the stock</u>
+            </h2>
+        {% endblock content %}
+    </div> 
+     
         <div class="container">       
             {% for item in model %}
             <div class="card">
             
             <img src="{{item.image.url}}" alt="Models">  
-            <div >{{ item.name }} <br >
-                 <a  style="color: red; font-size: 20px ;">Rs.{{ item.price | stringformat:'d' }} </a><br>
-                  <br>
+                <div>{{ item.name }} <br >
+                    <a  style="color: red; font-size: 20px ;">Rs.{{ item.price | stringformat:'d' }} </a><br>
+                        <br>
                     <br> 
+                        <br> 
+                        <b style="font-size: small;">
+                            {% if item.available_quantities == 0 %}
+                                <b style="color: red;"> Out of Stock!!!</b>
+                            {% else %}
+                                {{ item.available_quantities }} Available
+                            {% endif %}
+                        </b>
                     <br> 
-                    <b style="font-size: small;">{% if item.available_quantities == 0 %}
-                        <b style="color: red;"> Out of Stock!!!</b>
-                        {% else %}
-                        {{ item.available_quantities }} Available
-                        {% endif %}</b>
-                    <br> 
-                    <button class="sell"><a href="{% url 'transaction' item.name %}" style="color: white;"> Sell </a></button> 
+                        <button class="sell"><a href="{% url 'transaction' item.name %}" style="color: white;"> Sell </a></button> 
                 </div>
                          
             </div>

@@ -101,31 +101,38 @@
 
 
 <body>
-    <ul>
+    <div>
+        <ul>
             <li style="float: left; font-size: large; margin-left: 30px;">
                 <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
             <li><a>Contact</a></li>
             <li><a>About</a></li>
             <li><a href="{% url 'Main_page' %}">Home</a></li>
-    </ul>
-    {% block content %}
-    <h1>BRAND COLLECTION</h1>
-    <h2 style="color:aliceblue;"> Select the Brand Mention Below <br>
-    <l style="font-size: medium;">
-        <u>Collection based on your favorite</u>
-    <l></h2>
+        </ul>
+    </div>
+    <div>   
+        {% block content %}
+        <h1>BRAND COLLECTION</h1>
+        <h2 style="color:aliceblue;">
+             Select the Brand Mention Below 
+             <br>
+            <l style="font-size: medium;">
+                <u>Collection based on your favorite</u>
+            <l>            
+        </h2>
     {% endblock content %}
-   
+    </div> 
         <div class="container">       
             {% for item in brand %}
             <div class="box">
-            <a href="{% url 'List_model1' item.name %} ">
-            <img src="{{item.image.url}}" alt="Brand"> </a> 
-            <div>{{ item.name }}</div>        
+                <a href="{% url 'List_model1' item.name %} ">
+                <img src="{{item.image.url}}" alt="Brand"> </a> 
+                <div>
+                    {{ item.name }}
+                </div>        
             </div>
             {% endfor %}  
         </div>
-    
-    
+       
 </body>
 </html>

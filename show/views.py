@@ -5,13 +5,16 @@ from show.models import Brand,Transaction,Phonemodel
 from django.db.models import Max, Avg, Sum, Min, Count
 from django.contrib import messages
 from django.contrib.auth.models import User
+
 # Create your views here.
 
 def displayview(request):
     return render(request,'display.html')
 
+
 def msg(request):
     return render(request,'msg.html')
+
 
 def create_brand(request,*args, **kwargs):
     try:
@@ -26,6 +29,7 @@ def create_brand(request,*args, **kwargs):
         return render(request,'index.html', {'form': brand})
     except:
         return HttpResponse("You Enter the Invalid Input")
+    
 
 def create_model(request):
     try:
@@ -39,19 +43,23 @@ def create_model(request):
         return render(request,'index1.html',{'form': model})
     except:
         return HttpResponse("You Enter the Invalid Input")
+    
 
 def update_model(request):
     return render(request,'update.html')
+
 
 def list_brand(request):
     brand = Brand.objects.all()
     context = {"brand":brand}
     return render(request,'list1.html',context)
 
+
 def list_model(request):
     model = Phonemodel.objects.all()
     context = {"model":model}
     return render(request,'list2.html',context)
+
 
 def list_model1(request,brand_id):
     try:
@@ -64,6 +72,7 @@ def list_model1(request,brand_id):
             return redirect('List_brand')
     except:
         messages.warning(request,'Model Page Does Not Load')
+        
 
 def transaction(request, mname):
     try:
@@ -79,6 +88,7 @@ def transaction(request, mname):
                     return HttpResponse("Sorry, please visit next time")
                 model.available_quantities -= 1
                 model.save()
+                
                 trans_type = request.POST['transaction_type']
                 form = Transaction (
                     user = request.user,
@@ -97,11 +107,15 @@ def transaction(request, mname):
         messages.ERROR(request,'Warning! Please visit after some time...')
 
 
-def data(request):
+def statics(request):
     result = Transaction.objects.all()
     Total_Sell = Transaction.objects.count()
+    
     Top_Sell_Phone = Phonemodel.objects.annotate(num_sold = Count('transaction')).order_by('-num_sold').first()
+    
     Top_sell_brand = Brand.objects.annotate(num_sold=Count('phonemodel__transaction')).order_by('-num_sold').first()
+    top_sell_brand_image = Brand.objects.get(name=Top_sell_brand).image
+
     Top_valued_brand = Brand.objects.annotate(tot_price=Sum('phonemodel__transaction__amount')).order_by('-tot_price').first()
     Top_valued_phone = Phonemodel.objects.annotate(tot_price=Sum('transaction__amount')).order_by('-tot_price').first()
     top_sell_ph_count = Top_Sell_Phone.transaction_set.count()
@@ -114,6 +128,7 @@ def data(request):
     print(Top_valued_phone)
     print(top_sell_ph_count)
     """
+    print(top_sell_brand_image)
     context = {'top_sell':Top_Sell_Phone,
                'results':result,
                'tot': Total_Sell,
@@ -122,5 +137,5 @@ def data(request):
                'top_valued_phone':Top_valued_phone,
                'top_sell_ph_count':top_sell_ph_count}
     
-    return render(request,'data.html',context)
+    return render(request,'statics.html',context)
     

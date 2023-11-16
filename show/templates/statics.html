@@ -1,0 +1,59 @@
+{% load static %}
+
+<style>
+    ul {
+            list-style-type: none;
+            margin-bottom: 20px;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        li a {
+            align-items: center;
+            display: block;
+            padding: 14px 16px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        li {
+            float: right;
+        }
+</style>
+
+<body>
+    <ul>
+        <li style="float: left; font-size: large; margin-left: 30px;">
+            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a>
+        </li>
+        <li>
+            <a>Contact</a>
+        </li>
+        <li>
+            <a>About</a>
+        </li>
+        <li>
+            <a href="{% url 'Main_page' %}">Home</a>
+        </li>
+    </ul>
+
+   
+   
+        <div>
+            <h1>Top Selling Brand</h1>
+            <h2>Total sold items : {{tot}}</h2>
+
+            <h3>Top Selling Phonemodel : {{top_sell}}  <br>
+                <img src="{{top_sell.image}}" alt="{{top_sell}}" >
+            </h3>
+        </div>
+
+        <div>
+            <h4> Top Selling Brand: {{top_sell_brand}} <br>
+                <img src="{{top_sell_brand.image}}" alt="{{top_sell_brand}}" >
+            </h4>
+            <h4>Top Valued Brand: {{top_valued_brand}}</h4>
+            <h4> Top Valued Phonemodel: {{top_valued_phone}}</h4>
+            <h4>Top Selling Phone Count: {{top_sell_ph_count}}</h4>
+        </div>
+</body>

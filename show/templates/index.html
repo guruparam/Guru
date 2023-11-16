@@ -1,8 +1,8 @@
 {% load static %}
 <html>
-<title>
-    Upload Brand Collection
-</title>
+    <title>
+        Upload Brand Collection
+    </title>
 <head>
     
     <style>
@@ -50,24 +50,33 @@
         }
     </style>
 </head>
+
 <body class="container1" style="padding:20px;">
-    <ul>
-        <li style="float: left; font-size: large; margin-left: 30px;">
-            <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
-        <li><a>Contact</a></li>
-        <li><a>About</a></li>
-        <li><a href="{% url 'Main_page' %}">Home</a></li>
-</ul>
-<h2 class="tit2"> UPLOAD YOUR BRAND </h2>
-<form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p>{{ form.as_p }}</p>
-    <button type="submit" onclick="submit()" style="text-align:center; justify-content: center;" > Upload </button>
-</form>
+    <div>
+        <ul>
+            <li style="float: left; font-size: large; margin-left: 30px;">
+                <a class="tit" href="{% url 'Main_page' %}">Mobile Showroom</a></li>
+            <li><a>Contact</a></li>
+            <li><a>About</a></li>
+            <li><a href="{% url 'Main_page' %}">Home</a></li>
+        </ul>
+    </div>
+    <div>    
+        <h2 class="tit2"> UPLOAD YOUR BRAND </h2>
+            <form method="POST" class="bn" style="align-items:center;" enctype="multipart/form-data">
+             {% csrf_token %}
+                <p>{{ form.as_p }}</p>
+                <button type="submit" onclick="submit()" style="text-align:center; justify-content: center;">
+                    Upload 
+                </button>
+            </form>
+    </div>
+
 <script>
     function submit() {
         alert("Data Uploaded Succesfully");
     }
 </script>
+
 </body>
 </html>
