@@ -114,28 +114,20 @@ def statics(request):
     Top_Sell_Phone = Phonemodel.objects.annotate(num_sold = Count('transaction')).order_by('-num_sold').first()
     
     Top_sell_brand = Brand.objects.annotate(num_sold=Count('phonemodel__transaction')).order_by('-num_sold').first()
-    top_sell_brand_image = Brand.objects.get(name=Top_sell_brand).image
 
     Top_valued_brand = Brand.objects.annotate(tot_price=Sum('phonemodel__transaction__amount')).order_by('-tot_price').first()
+
     Top_valued_phone = Phonemodel.objects.annotate(tot_price=Sum('transaction__amount')).order_by('-tot_price').first()
+    
     top_sell_ph_count = Top_Sell_Phone.transaction_set.count()
-    """
-    # Top_valued_phone1 = Phonemodel.objects.annotate(tot_price=Avg('transaction__amount')).order_by('-tot_price').first() 
-    print(Top_Sell_Phone)
-    print(Total_Sell)
-    print(Top_sell_brand)
-    print(Top_valued_brand)
-    print(Top_valued_phone)
-    print(top_sell_ph_count)
-    """
-    print(top_sell_brand_image)
+   
     context = {'top_sell':Top_Sell_Phone,
                'results':result,
                'tot': Total_Sell,
                'top_sell_brand':Top_sell_brand,
                'top_valued_brand':Top_valued_brand,
                'top_valued_phone':Top_valued_phone,
-               'top_sell_ph_count':top_sell_ph_count}
+               'top_sell_ph_count':top_sell_ph_count,}
     
     return render(request,'statics.html',context)
     

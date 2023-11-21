@@ -13,7 +13,7 @@ urlpatterns = [
     path('list_model/', views.list_model, name= 'List_model' ),
     path('list_model/<str:brand_id>/', views.list_model1, name= 'List_model1' ),
     path('sell/<str:mname>', views.transaction, name= 'transaction' ),
-    path('statics', views.statics, name='data' ),
+    path('statics', views.statics, name='statics' ),
 ]
 
 if settings.DEBUG:

@@ -40,20 +40,30 @@
    
    
         <div>
-            <h1>Top Selling Brand</h1>
-            <h2>Total sold items : {{tot}}</h2>
-
-            <h3>Top Selling Phonemodel : {{top_sell}}  <br>
-                <img src="{{top_sell.image}}" alt="{{top_sell}}" >
-            </h3>
+            <div>
+                <h1 style="text-align: center;">Statistics About Transaction</h1>
+            </div>
+            <div>
+                <h2>Total sold items : {{tot}}</h2>
+            </div>
+            <div>
+                <h3>Top Selling Phonemodel : {{top_sell}}
+                    <img src="{{top_sell.image.url}}" alt="{{top_sell}}"  width="100" height="100" >
+                    <h4>Top Selling Phone Count: {{top_sell_ph_count}}</h4>
+                </h3>
+            </div>    
         </div>
+        <br>
 
         <div>
-            <h4> Top Selling Brand: {{top_sell_brand}} <br>
-                <img src="{{top_sell_brand.image}}" alt="{{top_sell_brand}}" >
-            </h4>
-            <h4>Top Valued Brand: {{top_valued_brand}}</h4>
-            <h4> Top Valued Phonemodel: {{top_valued_phone}}</h4>
-            <h4>Top Selling Phone Count: {{top_sell_ph_count}}</h4>
+            <div>
+                <h4> Top Selling Brand: {{top_sell_brand}}
+                    <img src="{{top_sell_brand.image.url}}" alt="{{top_sell_brand}}" width="100" height="50">
+                </h4>
+            </div>
+            <div>  
+                <h4>Top Valued Brand: {{top_valued_brand}}</h4>
+                <h4> Top Valued Phonemodel: {{top_valued_phone}}</h4>
+            </div> 
         </div>
 </body>
