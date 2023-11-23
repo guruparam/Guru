@@ -4,6 +4,7 @@ from show.forms import brandform, modelform,Transactionform
 from show.models import Brand,Transaction,Phonemodel
 from django.db.models import Max, Avg, Sum, Min, Count
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -16,7 +17,7 @@ def displayview(request):
 def msg(request):
     return render(request,'msg.html')
 
-
+@login_required(login_url="/customer/login/")
 def create_brand(request,*args, **kwargs):
     try:
         if request.method == 'POST':
@@ -32,6 +33,7 @@ def create_brand(request,*args, **kwargs):
         return HttpResponse("You Enter the Invalid Input")
     
 
+@login_required(login_url="/customer/login/")
 def create_model(request):
     try:
         if request.method == 'POST':
@@ -48,8 +50,6 @@ def create_model(request):
 
 def update_model(request):
     return render(request,'update.html')
-
-
 
 def list_brand(request): 
     brand = Brand.objects.all()
@@ -96,6 +96,7 @@ def list_model1(request,brand_id):
         messages.warning(request,'Model Page Does Not Load')
         
 
+@login_required(login_url="/customer/login/")
 def transaction(request, mname):
     try:
         if (Phonemodel.objects.filter(name=mname)):
@@ -129,6 +130,7 @@ def transaction(request, mname):
         messages.ERROR(request,'Warning! Please visit after some time...')
 
 
+@login_required(login_url="/customer/login/")
 def statics(request):
     result = Transaction.objects.all()
     Total_Sell = Transaction.objects.count()
