@@ -16,14 +16,23 @@
        background-attachment: fixed;
     }
     .tit {
-        text-align: center;
+        background-color:rgb(43, 33, 33);
         margin:20px;
-        padding: 20px;
-        align-content: center;
-        background-color: rgb(51, 48, 48);
+        margin-top: 40px;
+        padding: 18px;
         color: white;
         font-family: Arial, Helvetica, sans-serif;
     }
+    .log-a {
+        font-size: large;
+        padding: 5px;
+        margin: 10px;
+        float: right;
+        border-radius:5px;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    
     .container {
         max-height: max-content;
         display: flex;
@@ -39,7 +48,7 @@
     }
     .c2c {
         align-content: center;
-        margin-top: 50px;
+        margin-top: 0px;
         height: 700px;
         width: 380px;
     }
@@ -63,13 +72,23 @@
         color: black;
         text-decoration: none;
     }
+    
 </style>
 </head>
 
 <body id="bg">
     <h1 class="tit"> 
-        Welcome to the Mobile world
+        <a > MOBILE WORLD </a>
+        {% if user.is_authenticated %}
+        <span class="lia"><a class="log-a" href="{% url 'logout' %}" style="background-color:red;">Logout</a> </span>
+        {% else %}
+        <span class="lia"></span><a class="log-a" href="{% url 'login' %}" style="background-color:green;">Login</a> </span>
+        {% endif %}
+       
+        <span class="lia"></span><a class="log-a" href="{% url 'register_user' %}" >Register</a></span>
     </h1>
+
+    <br>
     <div class="container">
         <div>
             <img src="{% static 'images/iphone.gif' %}" alt="showroom picture" >

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Registration | User
+{% endblock title %}
+
+
+
+{% block content %}
+
+{% if form.errors %}
+
+<div class="alert alert-warning alert-dismissible fade show" style="margin:50px;" role="alert">
+    There was <strong>Error Occurred</strong>, Please try again!
+    <button type="button" class="btn-close"
+    data-bs-dismiss="alert" style="float: right" aria-label="Close"></button>
+</div>
+
+{% endif %}
+
+<div style="margin: 50px 200px;">
+  <h1 style="text-align: center;">
+    Registration
+  </h1> <br>
+  <form action="" method=POST >
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+{% endblock %}

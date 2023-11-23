@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Logout Session
+{% endblock title %}
+
+
+{% block content %}
+<div style="text-align: center; padding-top: 10%;">
+    <p> You were <strong>LOGGED OUT</strong> this page .....</p>
+
+    <h3><a style="text-decoration:none;" href="{% url 'login' %}">Login again...</a></h3>
+</div>
+{% endblock %}

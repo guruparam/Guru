@@ -4,7 +4,8 @@ from show.forms import brandform, modelform,Transactionform
 from show.models import Brand,Transaction,Phonemodel
 from django.db.models import Max, Avg, Sum, Min, Count
 from django.contrib import messages
-from django.contrib.auth.models import User
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -49,16 +50,37 @@ def update_model(request):
     return render(request,'update.html')
 
 
-def list_brand(request):
+
+def list_brand(request): 
     brand = Brand.objects.all()
-    context = {"brand":brand}
-    return render(request,'list1.html',context)
+    paginator = Paginator(brand, 5)
+
+    page = request.GET.get('page')
+    try:
+        brands = paginator.page(page)
+    except PageNotAnInteger:
+        brands = paginator.page(1)
+    except EmptyPage:
+        brands = paginator.page(paginator.num_pages)
+
+    context = {'brand' : brands}
+    return render(request, 'list1.html' , context)
 
 
 def list_model(request):
     model = Phonemodel.objects.all()
-    context = {"model":model}
-    return render(request,'list2.html',context)
+    paginator = Paginator(model, 6)
+
+    page = request.GET.get('page')
+    try:
+        models = paginator.page(page)
+    except PageNotAnInteger:
+        models = paginator.page(1)
+    except EmptyPage:
+        models = paginator.page(paginator.num_pages)
+
+    context = {'model' : models}
+    return render(request,'list2-1.html',context)
 
 
 def list_model1(request,brand_id):
