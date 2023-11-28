@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from customer.forms import UserRegisterForm
 
 # Create your views here.
 def login_user(request):
@@ -33,13 +34,9 @@ def logout_user(request):
 def register_user(request):
     try:
         if request.method == 'POST':
-            form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
             if form.is_valid():
                 form.save()
-                username = request.POST['username']
-                password = request.POST['password1']
-                user = authenticate(username=username, password=password)
-                login(request, user)
                 messages.success(request, ('Registration Successfully!!!'))
         else:
             form = UserCreationForm()
