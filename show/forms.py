@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from show.models import Brand, Phonemodel, Transaction
 from django.forms.widgets import HiddenInput
+
 class brandform(ModelForm):
     class Meta:
         model = Brand

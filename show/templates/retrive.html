@@ -1,0 +1,49 @@
+<title>
+    Update record | brand | model
+</title>
+<h1>
+    <u>Update the Record Data</u>
+</h1>
+<br>
+<div>
+    <h1>Edit or Delete Brand Records</h1>
+    <table style="margin: 20px;">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+        </tr>
+        <br>
+        <tbody>
+            {% for form in brand %}
+            <tr>              
+                <td>{{ form.name }}</td>
+                <td style="padding: 15px;"><img src="{{ form.image.url }}" width="30" height="30" ></td>
+                <td><button><a href="/edit_brand/{{form.name}}">Update </a> </button></td>
+                <td><button><a href="/delete_brand/{{ form.name }}"> Delete </a> </button> </td>             
+            </tr>           
+            {% endfor %}
+        </tbody>
+       
+    </table>
+    <h1>Edit or Delete Phonemodels Records</h1>
+    <table style="margin: 20px;">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Quantity</th>
+        </tr>
+        <br>
+        <tbody>
+            {% for form in model %}
+            <tr>              
+                <td>{{ form.name }}</td>
+                <td style="padding: 15px;"><img src="{{ form.image.url }}" width="30" height="30" ></td>
+                <td style="padding: 15px;">{{ form.available_quantities }}</td>
+                <td><button><a href="/edit_model/{{form.id}}">Update </a> </button></td>
+                <td><button><a href="/delete_model/{{ form.id }}"> Delete </a> </button> </td>             
+            </tr>           
+            {% endfor %}
+        </tbody>
+       
+    </table>
+</div>

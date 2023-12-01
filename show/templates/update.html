@@ -1,3 +1,15 @@
-<h1>
-    Hello! Welcome
-</h1>
+
+<body style="margin: 12% 30%; border: solid;">
+{% block content %}
+<div style="text-align: center;"> 
+    <br>
+    <h2>Update Brand Record</h2> <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit">Update</button>
+    </form>
+    </div>
+{% endblock %}
+</body>

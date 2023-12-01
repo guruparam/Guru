@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from show.forms import brandform, modelform,Transactionform
 from show.models import Brand,Transaction,Phonemodel
@@ -18,7 +18,7 @@ def msg(request):
     return render(request,'msg.html')
 
 @login_required(login_url="/customer/login/")
-def create_brand(request,*args, **kwargs):
+def create_brand(request):
     try:
         if request.method == 'POST':
             brand = brandform(request.POST,request.FILES)
@@ -47,9 +47,6 @@ def create_model(request):
     except:
         return HttpResponse("You Enter the Invalid Input")
     
-
-def update_model(request):
-    return render(request,'update.html')
 
 def list_brand(request): 
     brand = Brand.objects.all()
@@ -130,6 +127,7 @@ def transaction(request, mname):
         messages.ERROR(request,'Warning! Please visit after some time...')
 
 
+
 @login_required(login_url="/customer/login/")
 def statics(request):
     result = Transaction.objects.all()
@@ -154,4 +152,47 @@ def statics(request):
                'top_sell_ph_count':top_sell_ph_count,}
     
     return render(request,'statics.html',context)
-    
+
+
+def retrive_record(request):
+    brand = Brand.objects.all()
+    model = Phonemodel.objects.all()
+    context = {'brand':brand,
+               'model':model}
+    return render(request,'retrive.html', context)
+
+def update_brand(request, name):
+    data = get_object_or_404(Brand, name=name)
+    if request.method == 'POST':
+        form = brandform(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            print('Updated Successfully')
+            return redirect('Update_record')
+    else:
+        form = brandform(instance=data)
+    return render(request, 'update.html', {'form': form})
+ 
+
+def update_model(request, id):
+    data = get_object_or_404(Phonemodel, id=id)
+    if request.method == 'POST':
+        form = modelform(request.POST, instance=data)
+
+        if form.is_valid():
+            form.save()
+            print('Updated Successfully')
+            return redirect('Update_record')       
+    else:
+        form = modelform(instance=data)
+    return render(request, 'update_model.html', {'form': form})
+
+def delete_brand(request, name):
+    brand = Brand.objects.get(name=name)
+    brand.delete()
+    return redirect('Update_record')
+def delete_model(request, id):
+    model = Phonemodel.objects.get(id=id)
+    model.delete()
+    return redirect('Update_record')
+
